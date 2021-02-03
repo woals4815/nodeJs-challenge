@@ -1,0 +1,19 @@
+extends templates/layout
+
+block content
+    .movie-content
+        .movie__title
+            h1=movie.title
+        .movie__synopsis
+            h4=movie.synopsis
+        .movie__rating
+            h6=movie.rating
+
+        .movie__uploadDate
+            h6=movie.uploadedAt
+        .movie__year
+            h6=movie.year
+        .movie__genres
+            ul
+                each item in movie.genres
+                    li=item

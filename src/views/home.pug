@@ -1,0 +1,6 @@
+extends templates/layout
+include mixins/movieBlock
+
+block content
+    each movie in movies
+        +movieBlock({id: movie.id, title: movie.title})
