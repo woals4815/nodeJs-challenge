@@ -4,6 +4,7 @@ Because it's a default export we can nickname it whatever we want.
 So import Movie from "./models"; will work!
 You can do Movie.find() or whatever you need like normal!
 */
+import routes from "../routes";
 import Movie from "./models/Movie";
 
 // Add your magic here!
@@ -78,5 +79,43 @@ export const searchMovie = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.redirect("/");
+  }
+};
+
+export const getEditMovie = async (req, res) => {
+  try {
+    const {
+      params: { id },
+    } = req;
+    if (id !== "favicon.ico") {
+      const movie = await Movie.findById(id);
+      if (!movie) {
+        res.render("404");
+      }
+      res.render("editMovie", { movie });
+    }
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.detail);
+  }
+};
+export const postEditMovie = async (req, res) => {
+  const {
+    params: { id },
+    body: { title, year, rating, synopsis, genres },
+  } = req;
+  const genresArr = genres.split(",");
+  try {
+    if (id !== "favicon.ico") {
+      const editedMovie = await Movie.findOneAndUpdate(
+        { _id: id },
+        { title, year, rating, synopsis, genres: genresArr }
+      );
+      console.log("done");
+    }
+    res.redirect(routes.detail);
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.detail);
   }
 };

@@ -17,3 +17,5 @@ block content
             ul
                 each item in movie.genres
                     li=item
+        .movie-edit_btn
+            a(href=routes.edit(movie.id)) Edit

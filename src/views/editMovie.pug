@@ -1,0 +1,11 @@
+extends templates/layout
+
+block content
+    h1 Edit Movie Info
+    form(action=routes.edit(movie.id), method="post")
+        input(type="text", required=true,minlength="3", name="title", value=movie.title)
+        input(type="number", required=true,name="year",placeholder="Year", value=movie.year)
+        input(type="text", required=true,name="synopsis",placeholder="Synopsis", value=movie.synopsis)
+        input(type="number", required=true,step="0.1",min="0", max="10",name="rating",placeholder="Rating", value=movie.rating)
+        input(type="text", required=true,name="genres",placeholder="Genres", value=movie.genres.toString())
+        input(type="submit", value="Edit")
