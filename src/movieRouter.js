@@ -1,6 +1,7 @@
 import express from "express";
 import routes from "../routes";
 import {
+  deleteMovie,
   getCreateMovie,
   getEditMovie,
   home,
@@ -26,4 +27,5 @@ movieRouter.get(routes.detail, movie);
 movieRouter.get(routes.edit(), getEditMovie);
 movieRouter.post(routes.edit(), postEditMovie);
 
+movieRouter.get(routes.delete(), deleteMovie);
 export default movieRouter;

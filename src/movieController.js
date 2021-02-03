@@ -57,7 +57,7 @@ export const postCreateMovie = async (req, res) => {
       rating,
       genres: genresArr,
     });
-    res.redirect("/");
+    res.redirect(`/${newMovie.id}`);
   } catch (error) {
     console.log(error);
     res.redirect("/");
@@ -111,9 +111,23 @@ export const postEditMovie = async (req, res) => {
         { _id: id },
         { title, year, rating, synopsis, genres: genresArr }
       );
-      console.log("done");
+      res.redirect(routes.detail);
     }
     res.redirect(routes.detail);
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.detail);
+  }
+};
+export const deleteMovie = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  try {
+    if (id !== "favicon.ico") {
+      await Movie.findByIdAndDelete(id);
+      res.redirect(routes.home);
+    }
   } catch (error) {
     console.log(error);
     res.redirect(routes.detail);

@@ -9,3 +9,4 @@ block content
         input(type="number", required=true,step="0.1",min="0", max="10",name="rating",placeholder="Rating", value=movie.rating)
         input(type="text", required=true,name="genres",placeholder="Genres", value=movie.genres.toString())
         input(type="submit", value="Edit")
+    a(href=routes.delete(movie.id)) Delete

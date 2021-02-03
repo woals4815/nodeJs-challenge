@@ -3,6 +3,7 @@ const EDIT = "/:id/edit";
 const MOVIE_DETAIL = "/:id";
 const CREATE = "/create";
 const SEARCH = "/search";
+const DELETE = "/:id/delete";
 
 const routes = {
   home: HOME,
@@ -14,6 +15,13 @@ const routes = {
       return `/${id}/edit`;
     } else {
       return EDIT;
+    }
+  },
+  delete: (id) => {
+    if (id) {
+      return `/${id}/delete`;
+    } else {
+      return DELETE;
     }
   },
 };
